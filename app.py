@@ -1,6 +1,5 @@
-
-import os
 from flask import Flask, render_template, request, redirect, url_for
+import os
 
 app = Flask(__name__)
 
@@ -15,7 +14,10 @@ def upload():
         voice = request.files["voice"]
         video = request.files["video"]
 
-        # Save the files
+        # Создаем папку uploads, если она отсутствует
+        if not os.path.exists("static/uploads"):
+            os.makedirs("static/uploads")
+
         photo.save("static/uploads/photo.jpg")
         voice.save("static/uploads/voice.mp3")
         video.save("static/uploads/video.mp4")
@@ -24,9 +26,8 @@ def upload():
 
 @app.route("/success")
 def success():
-    return "Данные успешно загружены! Создание аватара начато."
+    return "Данные успешно загружены! Создание аватара началось."
 
-# Добавление обработки порта для Heroku
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
