@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect You - Вопросы</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Ответьте на вопросы</h1>
+    <form action="/submit_answers" method="POST">
+        <label>Какой ты видишь свою идеальную точку B?</label><br>
+        <input type="text" name="question1" required><br><br>
+        <label>Какая внешность у твоего идеального 'я'?</label><br>
+        <input type="text" name="question2" required><br><br>
+        <label>Какие навыки и качества тебе нужно развить?</label><br>
+        <input type="text" name="question3" required><br><br>
+        <button type="submit">Отправить ответы</button>
+    </form>
+</body>
+</html>
