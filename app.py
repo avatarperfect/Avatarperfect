@@ -3,10 +3,12 @@ import os
 
 app = Flask(__name__)
 
+# Главная страница
 @app.route("/")
 def index():
     return render_template("index.html")
 
+# Обработка загрузки файлов
 @app.route("/upload", methods=["POST"])
 def upload():
     if request.method == "POST":
@@ -21,11 +23,19 @@ def upload():
 
         return redirect(url_for("success"))
 
+# Страница успешной загрузки
 @app.route("/success")
 def success():
     return "Данные успешно загружены! Создание аватара началось."
 
-# Привязываем приложение к динамическому порту Heroku
+# Обработка вопросов
+@app.route("/questions", methods=["POST"])
+def questions():
+    answers = request.form.to_dict()
+    print("Полученные ответы:", answers)
+    return "Спасибо за ваши ответы! Создание идеального аватара началось."
+
+# Привязываем приложение к порту
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
