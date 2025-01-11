@@ -1,27 +1,31 @@
 
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfect You</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Perfect You уже внутри тебя!</h1>
-        <form action="/upload" method="post" enctype="multipart/form-data">
-            <label for="photo">Загрузите 3-4 фото:</label>
-            <input type="file" id="photo" name="photo" required><br><br>
-            
-            <label for="voice">Загрузите аудиозапись голоса:</label>
-            <input type="file" id="voice" name="voice" required><br><br>
-
-            <label for="video">Загрузите видео с мимикой:</label>
-            <input type="file" id="video" name="video" required><br><br>
-
+        <h1 id="welcome-text">Perfect You уже внутри тебя!</h1>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label>Загрузите 3-4 фото:</label><br>
+            <input type="file" name="photo" accept="image/*" multiple><br><br>
+            <label>Загрузите аудиозапись голоса:</label><br>
+            <input type="file" name="voice" accept="audio/*"><br><br>
+            <label>Загрузите видео с мимикой:</label><br>
+            <input type="file" name="video" accept="video/*"><br><br>
             <button type="submit">Создать аватар</button>
         </form>
     </div>
+    <audio id="welcome-audio" autoplay>
+        <source src="static/welcome.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        const text = document.getElementById('welcome-text');
+        text.classList.add('glow');
+    </script>
 </body>
 </html>
